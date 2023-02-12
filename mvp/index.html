@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comment app v1</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="user-detail">
+        <h4>Logged in as:</h4>
+        <div id="username-container"></div>
+    </div>
+        <div class="container">
+        <h1>Discussion</h1>
+        <div style="display: flex;">
+        <!-- <input id="username" type="text"> -->
+        <form action="/form/submit" method="POST">
+            <textarea style="width: 600px" class="comment" id="comment" value="comment"></textarea>
+        </form>
+        <span style="margin-left: 10px;"><button id="submit-button">Submit</button></span>
+        </div>
+        
+        <br>
+        <div id="commentSection">
+
+        </div>        
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
