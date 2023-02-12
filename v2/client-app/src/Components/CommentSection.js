@@ -1,9 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useContext,useEffect } from "react";
+import axios from "axios";
 
-const CommentSection = () => {
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
+
+const CommentSection = ({option}) => {
+  const [comment, setComment] = useState({
+    body: ""
+  });
+  const {body} = comment;
+  // const [newComment, setNewComment] = useState("");
+
+  useEffect(() => {
+    const submitComment = async () => {
+      try {
+        const response = await axios.post('http://localhost:5001/comments', {
+          creator: option ,
+          body: body
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    submitComment();
+  }, []);
+
+  const handleSubmit = (event) => {
+    setComment( event.target.value
+    );
+  }
+
   return (
+    <>
     <div className="comment-section">
       <h3>Comment Section</h3>
       <form
@@ -17,20 +45,19 @@ const CommentSection = () => {
           </label>
           <textarea
             class="form-control"
+            name="body"
             id="exampleFormControlTextarea1"
             rows="2"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
+            value={body}
+            onChange={(e) => setComment({...comment, [e.target.name]:e.target.value})}
           ></textarea>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
-      <div>
-        {comments.map((comment, index) => (
-          <div key={index}>{comment}</div>
-        ))}
-      </div>
+      <p>Current User: {option}</p>
     </div>
+    </>
+    
   );
 };
 

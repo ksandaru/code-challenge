@@ -16,7 +16,7 @@ const CommentView = ({ creator, body, upvotes, userprofile, time }) => {
             <div class="card-body">
               <h5 class="card-title" style={{fontWeight:"bold"}}>{creator}</h5>
               <p class="card-text">{body}</p>
-              <p class="card-text">{upvotes}</p>
+              <p class="card-text">upvotes: {upvotes}</p>
                 <small class="text-muted">{time}</small>
             </div>
           </div>
